@@ -34,14 +34,14 @@ function listar(){
     var linea="";
     materias.forEach((e) => {
 			 linea =
-				linea +
-				"<li>" +
-				e.carrera +
-				" - " +
-				e.semestre +
-				" - " +
-				e.curso +
-				"</li>";
+					linea +
+					"<tr><td>" +
+					e.carrera +
+					" </td><td> " +
+					e.semestre +
+					" </td><td> " +
+					e.curso +
+					"</td></tr>";
 		});
     //document.getElementById("lista").innerHTML="";
     console.log("linea => "+linea);
