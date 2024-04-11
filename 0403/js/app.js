@@ -51,5 +51,5 @@ function listar(){
 }
 
 document.getElementById("carga").addEventListener("click",cargar); 
- document.getElementById("agregar").addEventListener("click", agregar); 
+document.getElementById("agregar").addEventListener("click", agregar); 
 document.getElementById("limpiar").addEventListener("click", limpiar); 
