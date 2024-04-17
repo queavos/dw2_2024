@@ -46,7 +46,7 @@ function cargar() {
   // }
   function agregar() {
      console.log("agregar");
-      
+      console.log(materias);
         console.log("estoy agregando");
         let vmatid= document.getElementById("matid").value;
            let vcarrera = document.getElementById("carrera").value;
