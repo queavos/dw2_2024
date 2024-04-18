@@ -1,6 +1,8 @@
-console.log("asdasd");
+
 var materias=[];
 //document.getElementById("texto").innerHTML="<h3>buenas</h3"
+
+/// carga los datos de prueba y actualiza el localStorage
 function precargar()
 {
   console.log("pre carga");
@@ -27,7 +29,8 @@ localStorage.setItem('materias',cadena);
  //listar();
   }
 
-
+// CARGAR lee los datos de LOCALSTORAGE en caso de que tenga valores los carga en el array materias
+// sino ejecuta la funcion precarga()
 function cargar() { 
    console.log("carga"); 
     var valor=localStorage.getItem('materias');
@@ -45,6 +48,13 @@ function cargar() {
   // {
 
   // }
+
+  //// tomar los valores del formulario
+  /// agrega un nuevo elemento al array materias si matid==0
+  /// sino busca el el valor de matid en el array materias
+  /// y modifica los datos
+  //luego persiste los datos
+
   function agregar() {
      console.log("agregar");
       console.log(materias);
@@ -82,6 +92,7 @@ materias.forEach(
         listar();
         limpiar();
   }
+  // setea el form para crear una nueva materia
 function limpiar ()
     {
        console.log("limpiar");
@@ -94,6 +105,8 @@ function limpiar ()
 		document.getElementById("feini").value = "";
 		document.getElementById("fefin").value = "";        
     }
+
+// dibuja las filas de la tabla    
 function listar(){
    console.log("listar");
     //console.log(materias);
@@ -116,7 +129,7 @@ function listar(){
 				" </td> " +
 				"<td><a class='btedit' data-id='" +
 				e.matcode +
-				"' >Editar</a> <td><a class='btborrar' data-id='" +
+				"' >Editar</a> <td><a class='btborrar ' data-id='" +
 				e.matcode +
 				"' >Borrar</a></td> </tr>";
 		});
@@ -126,6 +139,11 @@ function listar(){
      addEventos()
     
 }
+// captura el elemento btedit que disparo el evento
+// recupera el atributo data-id del elemento disparador
+// busca la materia que tiene el matcode igual al data-id recuperado
+// y realiza la carga de los datos en el formulario
+
 function editar(e){
   console.log("ya poes editar");
   //console.log(e);
@@ -147,6 +165,8 @@ function editar(e){
           }
         });
 }
+
+// activa los eventos para los botones de la tabla, ademas les agrega clases de formato
 function addEventos()
 {
    console.log("eventos");
@@ -166,6 +186,12 @@ for (let i=0;i<btseditar.length;i++)
 			btsborrar[i].classList.add("btn-danger");
   } 
 }
+
+// captura el elemento btedit que disparo el evento
+// recupera el atributo data-id del elemento disparador
+// busca la materia que tiene el matcode igual al data-id recuperado
+// elimana el elemento del array materia y luego persiste el array 
+// en el localstorage
 function borrar(e){
   console.log("borrando");
   var eid = e.target.getAttribute("data-id");
@@ -177,13 +203,14 @@ function borrar(e){
 			console.log(m.materia+"-"+idx);
       materias.splice(idx,1);
 		}
+    localStorage.setItem("materias", JSON.stringify(materias));
     listar();
 	});
 
 }
 document.getElementById("carga").addEventListener("click",cargar); 
 document.getElementById("agregar").addEventListener("click", agregar); 
-//document.getElementById("limpiar").addEventListener("click", limpiar); 
 document.getElementById("btnuevo").addEventListener("click", limpiar); 
 
+/// cuando se carga toda la pagina -> cargar
 document.addEventListener("DOMContentLoaded", cargar);
