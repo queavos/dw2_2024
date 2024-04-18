@@ -24,7 +24,7 @@ function precargar()
  var cadena = JSON.stringify(materias);
 console.log(cadena);
 localStorage.setItem('materias',cadena);
- listar();
+ //listar();
   }
 
 
@@ -33,12 +33,13 @@ function cargar() {
     var valor=localStorage.getItem('materias');
     if (!valor) 
       {
+        console.log("sin materias");
         precargar();
       } else 
       {
-        var materias = JSON.parse(localStorage.getItem("materias"));
+       materias = JSON.parse(localStorage.getItem("materias"));   
       }
-    listar();
+      listar();
   }
   // function guardar() 
   // {
@@ -97,9 +98,9 @@ function listar(){
    console.log("listar");
     //console.log(materias);
     var linea="";
-    var valores=JSON.parse(localStorage.getItem("materias"));
-    console.log(valores);
-    valores.forEach((e) => {
+   // materias = JSON.parse(localStorage.getItem("materias"));
+    console.log(materias);
+    materias.forEach((e) => {
 			linea =
 				linea +
 				"<tr><td>" +
@@ -184,4 +185,5 @@ document.getElementById("carga").addEventListener("click",cargar);
 document.getElementById("agregar").addEventListener("click", agregar); 
 //document.getElementById("limpiar").addEventListener("click", limpiar); 
 document.getElementById("btnuevo").addEventListener("click", limpiar); 
-//document.addEventListener()
+
+document.addEventListener("DOMContentLoaded", cargar);
