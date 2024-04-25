@@ -68,6 +68,7 @@ class Carreras {
         }
         actualizar(f){
             let idx=this.getIndexById(f.carre_id);
+            this.datos[idx].facu_id = f.facu_id; //<<-- falto este
             this.datos[idx].carre_nombre=f.carre_nombre;
             this.datos[idx].carre_sigla = f.carre_sigla;
              this.persistir();  

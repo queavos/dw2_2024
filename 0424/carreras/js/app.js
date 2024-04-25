@@ -3,6 +3,7 @@ var carreras = new Carreras();
 function nuevoForm() {
 	document.getElementById("carre_id").value = -1;
 	document.getElementById("facu_id").value = "";
+	dibSelectFacuId(-1);
 	document.getElementById("carre_nombre").value = "";
 	document.getElementById("carre_sigla").value = "";
 }
@@ -14,6 +15,7 @@ function editarForm(e) {
 	document.getElementById("carre_nombre").value =
 		carreras.datos[idx].carre_nombre;
 	document.getElementById("facu_id").value = carreras.datos[idx].facu_id;
+	dibSelectFacuId(carreras.datos[idx].facu_id);
 	document.getElementById("carre_sigla").value =
 		carreras.datos[idx].carre_sigla;
 }
@@ -22,6 +24,24 @@ function borrarForm(e) {
 	let idx = carreras.getIndexById(eid);
 	carreras.borrar(idx);
 	dibujarTabla();
+}
+function dibSelectFacuId(valor) {
+	let selected = " selected='selected'";
+	let opciones = "";
+	// console.log(facultades.datos);
+	facultades.datos.forEach((d) => {
+		console.log(d);
+		if (valor == d.facu_id) { selected = " selected='selected' "; } else { selected = '' }
+		opciones =
+			opciones +
+			"<option value='" +
+			d.facu_id +
+			"'" + selected + " >" +
+			d.facu_nombre +
+			"</option>";
+	});
+	console.log(opciones);
+	document.getElementById("facu_id").innerHTML = opciones;
 }
 function guardarForm() {
 	let carrera = new Carrera();
@@ -41,6 +61,7 @@ function cancelarForm() {
 	document.getElementById("carre_nombre").value = "";
 	document.getElementById("carre_sigla").value = "";
 	document.getElementById("facu_id").value = "";
+	dibSelectFacuId(-1);
 }
 function dibujarTabla() {
 	let lineas = "";
